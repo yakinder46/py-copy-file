@@ -3,18 +3,18 @@ import os
 
 def copy_file(command: str) -> None:
     parts = list(command.split())
-    if len(parts) < 3:
+    if len(parts) != 3:
         return
 
     if parts[0] != "cp":
         return
-    obj1 = parts[1]
-    obj2 = parts[2]
-    if obj1 == obj2:
+    source_file = parts[1]
+    destination_file = parts[2]
+    if source_file == destination_file:
         return
 
-    if not os.path.exists(obj1):
+    if not os.path.exists(source_file):
         return
 
-    with open(obj1, "r") as file_in, open(obj2, "w") as file_out:
+    with open(source_file, "r") as file_in, open(destination_file, "w") as file_out:
         file_out.write(file_in.read())
